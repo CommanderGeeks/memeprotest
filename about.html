@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - The Meme Protest</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            background: 
+                linear-gradient(135deg, rgba(255, 23, 68, 0.9) 0%, rgba(0, 255, 65, 0.9) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-hero h1 {
+            color: var(--black);
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .about-hero .tagline {
+            color: var(--black);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .content-section h2 {
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            font-size: 3rem;
+        }
+
+        .content-section p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section em {
+            color: var(--electric-blue);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .origin-story {
+            background: var(--dark-gray);
+            border-left: 5px solid var(--hot-pink);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .origin-story h3 {
+            color: var(--hot-pink);
+            margin-bottom: 1rem;
+        }
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .principle-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .principle-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .principle-number {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 3rem;
+            color: var(--electric-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .principle-card h3 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .principle-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .faq-section {
+            background: var(--black);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            color: var(--electric-blue);
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .call-to-action {
+            background: linear-gradient(135deg, var(--neon-green) 0%, var(--electric-blue) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .call-to-action h2 {
+            color: var(--black);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .call-to-action p {
+            color: var(--black);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .call-to-action .btn {
+            background: var(--black);
+            color: var(--neon-green);
+            border: 2px solid var(--black);
+            font-size: 1.5rem;
+            padding: 1rem 3rem;
+            margin: 0.5rem;
+        }
+
+        .call-to-action .btn:hover {
+            background: transparent;
+            color: var(--black);
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 3rem;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .principles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ The Meme Protest</a>
+            <ul class="nav-links">
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="submit.html">Submit</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="about-hero">
+        <h1>ABOUT THE MOVEMENT</h1>
+        <p class="tagline">Armed with Memes. Powered by Passion. Built for the Future.</p>
+    </div>
+
+    <main class="container">
+        <div class="content-section">
+            <h2>What Is The Meme Protest?</h2>
+            <p>
+                The Meme Protest is a grassroots movement that weaponizes memes to amplify voices, organize action, 
+                and demand change. We believe that <em>the future is being written by those who show up</em>, and in 2026, 
+                showing up means creating, sharing, and rallying behind the most powerful communication tool of our generation: 
+                <em>the meme</em>.
+            </p>
+            <p>
+                This isn't about being silly. This is about being <em>real</em>. Real problems. Real frustrations. 
+                Real demands. From free pizza to climate justice, from mental health to labor rights — 
+                <strong style="color: var(--hot-pink);">if it matters to you, it belongs here</strong>.
+            </p>
+            <p>
+                We're not an organization. We're not a company. We're a <em>movement</em> — chaotic, optimistic, 
+                and unapologetically honest. We're students, workers, dreamers, and doers who refuse to accept "that's just how it is."
+            </p>
+        </div>
+
+        <div class="origin-story">
+            <h3>How It Started</h3>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin: 0;">
+                It began in a cramped dorm room at 2 AM. A group of students, fueled by instant ramen and existential dread, 
+                were complaining about everything wrong with the world. Someone said, "We should protest." Someone else said, 
+                "With what? Signs nobody reads?" And then someone opened their meme folder and said, <em style="color: var(--neon-green);">"With these."</em>
+                <br><br>
+                That joke became a vision. That vision became a website. That website became a movement.
+                <br><br>
+                We're not backed by venture capital. We're not part of some marketing campaign. We're just people who believed 
+                that memes — those stupid, beautiful, viral images that make us laugh and think — could actually change things. 
+                And we were right.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Principles</h2>
+        </div>
+
+        <div class="principles">
+            <div class="principle-card">
+                <div class="principle-number">01</div>
+                <h3>Everyone's Voice Matters</h3>
+                <p>
+                    From the student demanding better Wi-Fi to the activist fighting for climate action — 
+                    every cause deserves a platform. No gatekeepers. No hierarchies. Just voices.
+                </p>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">02</div>
+                <h3>Memes Are Tools</h3>
+                <p>
+                    A good meme spreads faster than any manifesto, hits harder than any speech, and unites more people 
+                    than any committee. We wield memes like others wield megaphones.
+                </p>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">03</div>
+                <h3>Action Over Bureaucracy</h3>
+                <p>
+                    No committees. No meetings about meetings. You see a problem, you create a protest, people upvote it, 
+                    and change happens. Simple. Fast. Effective.
+                </p>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">04</div>
+                <h3>Unity Through Diversity</h3>
+                <p>
+                    We don't all want the same thing. That's beautiful. Your passion for free pizza is just as valid as 
+                    someone else's passion for policy reform. Together, we're unstoppable.
+                </p>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">05</div>
+                <h3>Optimistic Chaos</h3>
+                <p>
+                    The world is messy. Change is messy. That's okay. We embrace the chaos because within it lies creativity, 
+                    energy, and the raw power of thousands of voices refusing to be silent.
+                </p>
+            </div>
+
+            <div class="principle-card">
+                <div class="principle-number">06</div>
+                <h3>No Downvoting</h3>
+                <p>
+                    We only uplift. We only amplify. If you don't agree with a protest, scroll past it. But we won't tear 
+                    each other down. The world does that enough already.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>How to Bring This to Your Campus</h2>
+            <p>
+                The Meme Protest isn't owned by anyone. It belongs to everyone. Want to start a chapter at your school? 
+                Here's how:
+            </p>
+            <p>
+                <strong style="color: var(--neon-green);">1. Spread the Word:</strong> Share the site with your friends, 
+                classmates, and community. Post about it on social media. Put up flyers (ironically, of course).
+            </p>
+            <p>
+                <strong style="color: var(--neon-green);">2. Start Protests:</strong> Create protests specific to your 
+                campus or community. Tag them with your university name so others can find them.
+            </p>
+            <p>
+                <strong style="color: var(--neon-green);">3. Organize IRL:</strong> Use this platform to coordinate 
+                in-person actions. Meet in the quad. March to admin buildings. Make noise.
+            </p>
+            <p>
+                <strong style="color: var(--neon-green);">4. Stay Independent:</strong> This movement has no leaders, 
+                no headquarters, no bosses. Keep it that way. The power is in the people.
+            </p>
+        </div>
+
+        <div class="faq-section">
+            <h2 style="color: var(--hot-pink); margin-bottom: 2rem;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Is this a joke?</div>
+                <div class="faq-answer">
+                    Yes and no. The memes are funny. The issues are serious. We believe you can be irreverent and sincere 
+                    at the same time. That's kind of the whole point.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I really protest about anything?</div>
+                <div class="faq-answer">
+                    Absolutely. If it matters to you, it matters. Whether it's global climate change or the lack of parking 
+                    on campus — create it, share it, let people upvote it.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do these protests actually work?</div>
+                <div class="faq-answer">
+                    That depends on you. This platform amplifies voices and coordinates action. But real change requires 
+                    people showing up — online and offline. Use this as a starting point, not the finish line.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Who runs this?</div>
+                <div class="faq-answer">
+                    Students who believed memes could change the world. We're not a company. We're not selling anything. 
+                    We're just providing a platform. The movement belongs to everyone who participates.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is my data safe?</div>
+                <div class="faq-answer">
+                    Everything is stored locally in your browser using localStorage. We don't have servers. We don't collect 
+                    your data. Your protests, votes, and identity exist only on your device. (This is a demo/prototype, after all.)
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Why no downvoting?</div>
+                <div class="faq-answer">
+                    Because negativity kills movements. We're here to uplift voices, not suppress them. If you disagree with 
+                    a protest, don't engage with it. But don't tear others down for caring about something.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I get in touch?</div>
+                <div class="faq-answer">
+                    Start a protest about it! Seriously though, this is a decentralized movement. There's no central office, 
+                    no customer service line. Connect with other protesters directly through the platform.
+                </div>
+            </div>
+        </div>
+
+        <div class="call-to-action">
+            <h2>THE FUTURE NEEDS YOU</h2>
+            <p>Stop scrolling. Start creating. The revolution is one meme away.</p>
+            <a href="submit.html" class="btn">Start a Protest</a>
+            <a href="browse.html" class="btn">Browse Protests</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Meme Protest. A movement, not an organization. Started by students who believed memes could change the world.</p>
+        <p style="margin-top: 0.5rem; color: var(--neon-green);">Armed with memes. Powered by passion. Built for the future.</p>
+    </footer>
+
+    <script src="shared.js"></script>
+</body>
+</html>

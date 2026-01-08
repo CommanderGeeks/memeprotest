@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protest Details - The Meme Protest</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .protest-detail {
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .protest-hero {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border: 3px solid var(--neon-green);
+            margin-bottom: 2rem;
+        }
+
+        .protest-title {
+            color: var(--neon-green);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .protest-meta-bar {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .meme-display {
+            width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            margin: 2rem 0;
+            border: 3px solid var(--medium-gray);
+            background: var(--black);
+        }
+
+        .summary-full {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--black);
+            border-left: 5px solid var(--hot-pink);
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            flex-wrap: wrap;
+        }
+
+        .upvote-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .upvote-count-large {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 3rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+
+        .upvote-btn-large {
+            background: transparent;
+            border: 3px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 1rem 2rem;
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upvote-btn-large:hover:not(:disabled) {
+            background: var(--neon-green);
+            color: var(--black);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.7);
+        }
+
+        .upvote-btn-large:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .upvote-btn-large:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: var(--light-gray);
+            color: var(--light-gray);
+        }
+
+        .upvote-btn-large.voted {
+            background: var(--neon-green);
+            color: var(--black);
+        }
+
+        .join-btn {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .organizer-info {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            margin: 2rem 0;
+        }
+
+        .organizer-info h3 {
+            color: var(--electric-blue);
+            margin-bottom: 1rem;
+        }
+
+        .organizer-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            color: var(--text-secondary);
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .supporters-section {
+            background: var(--black);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            margin: 2rem 0;
+        }
+
+        .supporters-section h3 {
+            color: var(--hot-pink);
+            margin-bottom: 1rem;
+        }
+
+        .supporters-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .supporter-tag {
+            background: var(--medium-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--electric-blue);
+            font-size: 0.9rem;
+        }
+
+        .share-section {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            text-align: center;
+        }
+
+        .share-section h3 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .edit-controls {
+            background: var(--medium-gray);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 768px) {
+            .protest-title {
+                font-size: 2rem;
+            }
+
+            .action-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .upvote-section {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ The Meme Protest</a>
+            <ul class="nav-links">
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="submit.html">Submit</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="protest-detail" id="protestDetail">
+            <!-- Content will be loaded here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Meme Protest. A movement, not an organization. Started by students who believed memes could change the world.</p>
+        <p style="margin-top: 0.5rem; color: var(--neon-green);">Armed with memes. Powered by passion. Built for the future.</p>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const protestId = parseInt(urlParams.get('id'));
+        const currentUser = getCurrentUser();
+
+        function loadProtest() {
+            const protest = getProtest(protestId);
+            
+            if (!protest) {
+                document.getElementById('protestDetail').innerHTML = `
+                    <div class="no-results">
+                        <h2>Protest Not Found</h2>
+                        <p>This protest doesn't exist or has been removed.</p>
+                        <a href="browse.html" class="btn btn-primary mt-2">Browse All Protests</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const hasVoted = currentUser.votedProtests.includes(protestId);
+            const hasJoined = protest.supporters.includes(currentUser.username);
+            const isOwner = currentUser.username === protest.organizer;
+
+            document.getElementById('protestDetail').innerHTML = `
+                <div class="protest-hero animate-in">
+                    <h1 class="protest-title">${protest.title}</h1>
+                    
+                    <div class="protest-meta-bar">
+                        <div class="meta-item">
+                            <span class="meta-label">Location:</span>
+                            <span class="university-tag">${protest.university}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Started:</span>
+                            <span>${formatTimestamp(protest.timestamp)}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Organizer:</span>
+                            <span>${protest.organizer}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="${protest.memeUrl}" alt="${protest.title}" class="meme-display">
+
+                <div class="summary-full">
+                    ${protest.summary}
+                </div>
+
+                <div class="action-bar">
+                    <div class="upvote-section">
+                        <div class="upvote-count-large">${protest.upvotes}</div>
+                        <button 
+                            class="upvote-btn-large ${hasVoted ? 'voted' : ''}" 
+                            id="upvoteBtn"
+                            ${hasVoted ? 'disabled' : ''}
+                        >
+                            ${hasVoted ? '✓ Upvoted' : 'Upvote This Protest'}
+                        </button>
+                    </div>
+                    
+                    <button class="btn btn-electric join-btn" id="joinBtn">
+                        ${hasJoined ? '✓ You Joined This Protest' : 'I Want to Join This Protest'}
+                    </button>
+                </div>
+
+                ${isOwner ? `
+                    <div class="edit-controls">
+                        <button class="btn btn-secondary" onclick="deleteProtest(${protestId}); window.location.href='profile.html';">
+                            Delete Protest
+                        </button>
+                    </div>
+                ` : ''}
+
+                <div class="organizer-info">
+                    <h3>Organizer Information</h3>
+                    <div class="organizer-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Organized by</div>
+                            ${protest.organizer}
+                        </div>
+                        ${protest.contact && (hasVoted || hasJoined) ? `
+                            <div class="detail-item">
+                                <div class="detail-label">Contact</div>
+                                ${protest.contact}
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${!hasVoted && !hasJoined && protest.contact ? `
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+                            <em>💡 Upvote or join this protest to see organizer contact information</em>
+                        </p>
+                    ` : ''}
+                </div>
+
+                <div class="supporters-section">
+                    <h3>Supporters (${protest.supporters.length})</h3>
+                    <div class="supporters-list">
+                        ${protest.supporters.map(supporter => 
+                            `<span class="supporter-tag">${supporter}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+
+                <div class="share-section">
+                    <h3>Spread the Word</h3>
+                    <div class="share-buttons">
+                        <button class="btn btn-primary" onclick="copyLink()">📋 Copy Link</button>
+                        <button class="btn btn-secondary" onclick="shareTwitter()">🐦 Share on Twitter</button>
+                        <button class="btn btn-electric" onclick="shareFacebook()">📘 Share on Facebook</button>
+                    </div>
+                </div>
+            `;
+
+            // Add event listeners
+            const upvoteBtn = document.getElementById('upvoteBtn');
+            if (upvoteBtn) {
+                upvoteBtn.addEventListener('click', handleUpvote);
+            }
+
+            const joinBtn = document.getElementById('joinBtn');
+            if (joinBtn) {
+                joinBtn.addEventListener('click', handleJoin);
+                if (hasJoined) {
+                    joinBtn.disabled = true;
+                    joinBtn.style.opacity = '0.6';
+                    joinBtn.style.cursor = 'not-allowed';
+                }
+            }
+        }
+
+        function handleUpvote() {
+            const username = ensureUsername();
+            if (!username) {
+                alert('You need to set a username to upvote!');
+                return;
+            }
+
+            const success = upvoteProtest(protestId);
+            if (success) {
+                loadProtest();
+                
+                // Confetti effect
+                const btn = document.getElementById('upvoteBtn');
+                btn.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+
+        function handleJoin() {
+            const username = ensureUsername();
+            if (!username) {
+                alert('You need to set a username to join!');
+                return;
+            }
+
+            const success = joinProtest(protestId, username);
+            if (success) {
+                loadProtest();
+                alert('🔥 You\'ve joined the protest! Stay strong, comrade.');
+            }
+        }
+
+        function copyLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('✓ Link copied to clipboard!');
+            }).catch(() => {
+                prompt('Copy this link:', url);
+            });
+        }
+
+        function shareTwitter() {
+            const protest = getProtest(protestId);
+            const text = `Join me in protesting: ${protest.title} 🔥`;
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function shareFacebook() {
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        // Load protest on page load
+        window.addEventListener('DOMContentLoaded', loadProtest);
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Meme Protest - Armed with Memes, We Change the World</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Landing Page Specific Styles */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: 
+                linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(255, 23, 68, 0.1) 100%),
+                var(--black);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 65, 0.03) 2px, rgba(0, 255, 65, 0.03) 4px),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 23, 68, 0.03) 2px, rgba(255, 23, 68, 0.03) 4px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            line-height: 1.1;
+        }
+
+        .manifesto {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin: 2rem 0;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .manifesto em {
+            color: var(--hot-pink);
+            font-style: normal;
+            text-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stats-bar {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem;
+            margin: 3rem 0;
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 4rem;
+            color: var(--electric-blue);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        .mission {
+            background: var(--dark-gray);
+            border-left: 5px solid var(--hot-pink);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mission h2 {
+            color: var(--hot-pink);
+            margin-bottom: 1rem;
+        }
+
+        .mission p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .mission strong {
+            color: var(--neon-green);
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--hot-pink) 0%, var(--neon-green) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            color: var(--black);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section .btn {
+            background: var(--black);
+            color: var(--neon-green);
+            border: 2px solid var(--black);
+            font-size: 1.5rem;
+            padding: 1rem 3rem;
+        }
+
+        .cta-section .btn:hover {
+            background: transparent;
+            color: var(--black);
+            border-color: var(--black);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .manifesto {
+                font-size: 1.2rem;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ The Meme Protest</a>
+            <ul class="nav-links">
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="submit.html">Submit</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content animate-in">
+                <h1>ARMED WITH MEMES,<br>WE CHANGE THE WORLD</h1>
+                <p class="manifesto">
+                    This is how the future speaks. Not with suits and speeches, but with <em>images that hit harder than words</em>. 
+                    We're not waiting for permission. We're not asking nicely. We're showing up with memes and telling the world 
+                    <em>exactly what direction it needs to go</em>.
+                </p>
+                <p class="manifesto">
+                    From pizza to mental health, from climate to bathrooms — if it matters, it deserves a protest. 
+                    <strong style="color: var(--electric-blue);">This is what human bonding looks like when we share the same energy.</strong>
+                </p>
+                <div class="hero-buttons">
+                    <a href="submit.html" class="btn btn-primary">Start a Protest</a>
+                    <a href="browse.html" class="btn btn-secondary">Join the Movement</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number" id="totalProtests">0</div>
+                    <div class="stat-label">Active Protests</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="totalUpvotes">0</div>
+                    <div class="stat-label">Total Upvotes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Voices Amplified</div>
+                </div>
+            </div>
+
+            <div class="mission">
+                <h2>THE FUTURE IS BEING WRITTEN BY THOSE WHO SHOW UP</h2>
+                <p>
+                    Every revolution started with people who refused to accept "that's just how it is." We're not burning flags or 
+                    storming buildings — we're <strong>weaponizing memes</strong>. Because in 2026, a good meme spreads faster than 
+                    any manifesto, hits harder than any speech, and unites more people than any organization.
+                </p>
+                <p>
+                    This isn't about being serious. This is about being <strong>real</strong>. Real problems. Real frustrations. 
+                    Real demands. Wrapped in the most powerful communication tool of our generation: <strong>the meme</strong>.
+                </p>
+                <p>
+                    Whether you're fighting for free pizza, mental health days, climate action, or anything in between — 
+                    <strong>your voice matters</strong>. Your meme matters. Your passion matters.
+                </p>
+            </div>
+
+            <h2 class="text-center" style="color: var(--neon-green); margin-top: 4rem;">What We Stand For</h2>
+            
+            <div class="values">
+                <div class="value-card">
+                    <div class="value-icon">🔥</div>
+                    <h3>Optimistic Chaos</h3>
+                    <p>We believe in organized disorder. Controlled mayhem. The beautiful mess of thousands of voices demanding thousands of things, all at once.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Everything Matters</h3>
+                    <p>From saving the planet to getting better Wi-Fi in the library. No cause is too big or too small. If it matters to you, it matters.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Unity Through Diversity</h3>
+                    <p>We don't all want the same thing. That's the point. But we all deserve to be heard, to organize, to fight for what we believe in.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">💪</div>
+                    <h3>Action Over Talk</h3>
+                    <p>Upvote what you believe in. Create what you're passionate about. Join what moves you. No committees. No bureaucracy. Just movement.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h2>THE FUTURE NEEDS THIS</h2>
+            <a href="browse.html" class="btn">See What People Are Fighting For</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Meme Protest. A movement, not an organization. Started by students who believed memes could change the world.</p>
+        <p style="margin-top: 0.5rem; color: var(--neon-green);">Armed with memes. Powered by passion. Built for the future.</p>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        // Update stats on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const stats = getTotalStats();
+            document.getElementById('totalProtests').textContent = stats.totalProtests;
+            document.getElementById('totalUpvotes').textContent = stats.totalUpvotes;
+        });
+    </script>
+</body>
+</html>

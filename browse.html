@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Protests - The Meme Protest</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .browse-header {
+            background: var(--dark-gray);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--neon-green);
+        }
+
+        .browse-header h1 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .filter-group select {
+            width: auto;
+            min-width: 150px;
+        }
+
+        .protest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .protest-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .protest-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+        }
+
+        .meme-preview {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .card-content h3:hover {
+            color: var(--electric-blue);
+        }
+
+        .summary-preview {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .university-tag {
+            background: var(--medium-gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--electric-blue);
+        }
+
+        .timestamp {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .upvote-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neon-green);
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.3rem;
+        }
+
+        .upvote-icon {
+            font-size: 1.5rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .no-results h2 {
+            color: var(--hot-pink);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .protest-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ The Meme Protest</a>
+            <ul class="nav-links">
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="submit.html">Submit</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="browse-header">
+        <div class="container">
+            <h1>BROWSE ALL PROTESTS</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">
+                Find your fight. Upvote what matters. Join the movement.
+            </p>
+            
+            <div class="controls">
+                <input type="text" id="searchBox" class="search-box" placeholder="Search protests...">
+                
+                <div class="filter-group">
+                    <label for="universityFilter">Filter by:</label>
+                    <select id="universityFilter">
+                        <option value="all">All Universities</option>
+                    </select>
+                    
+                    <select id="sortFilter">
+                        <option value="newest">Newest First</option>
+                        <option value="upvotes">Most Upvoted</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="protest-grid" id="protestGrid">
+            <!-- Protests will be loaded here -->
+        </div>
+        
+        <div class="no-results" id="noResults" style="display: none;">
+            <h2>No Protests Found</h2>
+            <p>No protests match your search criteria. Try different filters or be the first to create one!</p>
+            <a href="submit.html" class="btn btn-primary mt-2">Start a Protest</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Meme Protest. A movement, not an organization. Started by students who believed memes could change the world.</p>
+        <p style="margin-top: 0.5rem; color: var(--neon-green);">Armed with memes. Powered by passion. Built for the future.</p>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        let allProtests = [];
+        let currentUser = getCurrentUser();
+
+        function loadProtests() {
+            allProtests = getProtests();
+            populateUniversityFilter();
+            renderProtests();
+        }
+
+        function populateUniversityFilter() {
+            const universities = [...new Set(allProtests.map(p => p.university))];
+            const filter = document.getElementById('universityFilter');
+            
+            // Clear existing options except "All"
+            filter.innerHTML = '<option value="all">All Universities</option>';
+            
+            universities.sort().forEach(uni => {
+                const option = document.createElement('option');
+                option.value = uni;
+                option.textContent = uni;
+                filter.appendChild(option);
+            });
+        }
+
+        function filterAndSortProtests() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const universityFilter = document.getElementById('universityFilter').value;
+            const sortFilter = document.getElementById('sortFilter').value;
+
+            let filtered = allProtests.filter(protest => {
+                const matchesSearch = 
+                    protest.title.toLowerCase().includes(searchTerm) ||
+                    protest.summary.toLowerCase().includes(searchTerm) ||
+                    protest.organizer.toLowerCase().includes(searchTerm);
+                
+                const matchesUniversity = 
+                    universityFilter === 'all' || protest.university === universityFilter;
+                
+                return matchesSearch && matchesUniversity;
+            });
+
+            // Sort
+            filtered.sort((a, b) => {
+                switch(sortFilter) {
+                    case 'upvotes':
+                        return b.upvotes - a.upvotes;
+                    case 'oldest':
+                        return a.timestamp - b.timestamp;
+                    case 'newest':
+                    default:
+                        return b.timestamp - a.timestamp;
+                }
+            });
+
+            return filtered;
+        }
+
+        function renderProtests() {
+            const protests = filterAndSortProtests();
+            const grid = document.getElementById('protestGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (protests.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = protests.map(protest => {
+                const hasVoted = currentUser.votedProtests.includes(protest.id);
+                const votedClass = hasVoted ? 'voted' : '';
+                
+                return `
+                    <div class="protest-card animate-in">
+                        <img src="${protest.memeUrl}" alt="${protest.title}" class="meme-preview" onclick="viewProtest(${protest.id})">
+                        <div class="card-content">
+                            <h3 onclick="viewProtest(${protest.id})">${protest.title}</h3>
+                            <p class="summary-preview">${protest.summary}</p>
+                            <div class="card-meta">
+                                <span class="university-tag">${protest.university}</span>
+                                <span class="timestamp">${formatTimestamp(protest.timestamp)}</span>
+                            </div>
+                            <div class="card-actions">
+                                <div class="upvote-display">
+                                    <span class="upvote-icon">▲</span>
+                                    <span>${protest.upvotes}</span>
+                                </div>
+                                <button 
+                                    class="upvote-btn ${votedClass}" 
+                                    onclick="handleUpvote(${protest.id})"
+                                    ${hasVoted ? 'disabled' : ''}
+                                >
+                                    ${hasVoted ? '✓ Upvoted' : 'Upvote'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleUpvote(protestId) {
+            const username = ensureUsername();
+            if (!username) {
+                alert('You need to set a username to upvote!');
+                return;
+            }
+
+            const success = upvoteProtest(protestId);
+            if (success) {
+                currentUser = getCurrentUser();
+                loadProtests();
+                
+                // Animate the upvote
+                const btn = event.target;
+                btn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 200);
+            }
+        }
+
+        function viewProtest(id) {
+            window.location.href = `protest.html?id=${id}`;
+        }
+
+        // Event listeners
+        document.getElementById('searchBox').addEventListener('input', renderProtests);
+        document.getElementById('universityFilter').addEventListener('change', renderProtests);
+        document.getElementById('sortFilter').addEventListener('change', renderProtests);
+
+        // Initial load
+        window.addEventListener('DOMContentLoaded', loadProtests);
+    </script>
+</body>
+</html>
