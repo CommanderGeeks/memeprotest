@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's Next - The Meme Protest</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .roadmap-hero {
+            background: 
+                linear-gradient(135deg, rgba(0, 255, 65, 0.9) 0%, rgba(0, 255, 255, 0.9) 50%, rgba(255, 23, 68, 0.9) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roadmap-hero::before {
+            content: '🚀';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .roadmap-hero h1 {
+            color: var(--black);
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .roadmap-hero .tagline {
+            color: var(--black);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--black);
+            color: var(--neon-green);
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            border: 2px solid var(--neon-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.8); }
+        }
+
+        .intro-section {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .intro-section em {
+            color: var(--electric-blue);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--neon-green), var(--electric-blue), var(--hot-pink));
+        }
+
+        .phase {
+            margin-bottom: 4rem;
+        }
+
+        .phase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .phase-number {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background: var(--black);
+            border: 4px solid var(--neon-green);
+            border-radius: 50%;
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            line-height: 72px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+
+        .phase-title {
+            color: var(--neon-green);
+            font-size: 3rem;
+            margin-top: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .phase-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 1rem auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-green), var(--electric-blue));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 255, 65, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--electric-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .priority-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--hot-pink);
+            color: var(--black);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            border-radius: 3px;
+        }
+
+        .priority-high { background: var(--hot-pink); }
+        .priority-medium { background: var(--electric-blue); }
+        .priority-future { background: var(--medium-gray); color: var(--text-primary); }
+
+        .cta-section {
+            background: var(--black);
+            border: 3px solid var(--neon-green);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: var(--neon-green);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feedback-box {
+            background: var(--dark-gray);
+            border: 2px solid var(--electric-blue);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 3rem auto;
+            text-align: left;
+        }
+
+        .feedback-box h3 {
+            color: var(--electric-blue);
+            margin-bottom: 1rem;
+        }
+
+        .feedback-box p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feedback-box li {
+            color: var(--text-primary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feedback-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-hero h1 {
+                font-size: 3rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .phase-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">⚡ The Meme Protest</a>
+            <ul class="nav-links">
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="submit.html">Submit</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="roadmap-hero">
+        <h1>WHAT'S NEXT</h1>
+        <p class="tagline">The Revolution is Just Getting Started</p>
+        <div class="status-badge">🚧 Under Active Development</div>
+    </div>
+
+    <main class="container">
+        <div class="intro-section">
+            <p>
+                This is <em>version 1.0</em> — the prototype that proves memes can organize movements. 
+                But we're just warming up. Here's what's coming to make The Meme Protest the most 
+                powerful grassroots platform on the internet.
+            </p>
+            <p>
+                <strong style="color: var(--hot-pink);">This roadmap is built by the community, for the community.</strong> 
+                Your feedback shapes what we build next.
+            </p>
+        </div>
+
+        <div class="timeline">
+            <!-- PHASE 1: FOUNDATION -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">01</div>
+                    <h2 class="phase-title">Foundation: Going Live</h2>
+                    <p class="phase-description">
+                        Transform this prototype into a real, multi-user platform that actually works at scale.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Real Backend</h3>
+                        <p>
+                            Replace localStorage with a proper database (MongoDB/Firebase). Enable true multi-user 
+                            experience where everyone sees the same protests, votes, and activity in real-time.
+                        </p>
+                        <span class="priority-tag priority-high">Top Priority</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>User Authentication</h3>
+                        <p>
+                            Secure login system with email/password and social OAuth (Google, Twitter). 
+                            Protect your identity while staying anonymous when you choose.
+                        </p>
+                        <span class="priority-tag priority-high">Top Priority</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <h3>Cloud Image Storage</h3>
+                        <p>
+                            Store meme images on Cloudinary or AWS S3 instead of base64. Faster loading, 
+                            better quality, unlimited uploads.
+                        </p>
+                        <span class="priority-tag priority-high">Top Priority</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Real-Time Updates</h3>
+                        <p>
+                            Live upvote counters, instant notifications when your protest trends, 
+                            see new supporters join in real-time. No more page refreshes.
+                        </p>
+                        <span class="priority-tag priority-high">Top Priority</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Mobile PWA</h3>
+                        <p>
+                            Install The Meme Protest as a mobile app. Works offline, sends push notifications, 
+                            feels native. Activism happens on phones.
+                        </p>
+                        <span class="priority-tag priority-high">Top Priority</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 2: ENGAGEMENT -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number" style="border-color: var(--electric-blue); color: var(--electric-blue); box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">02</div>
+                    <h2 class="phase-title" style="color: var(--electric-blue); text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);">Engagement: Building Community</h2>
+                    <p class="phase-description">
+                        Make the platform addictively engaging while keeping the grassroots spirit alive.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Built-in Meme Creator</h3>
+                        <p>
+                            Create memes directly in the app. Templates, text overlays, filters, stickers. 
+                            Lower the barrier to entry — everyone can make a protest, even without Photoshop.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 2</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Comments & Discussions</h3>
+                        <p>
+                            Add comment threads to each protest. Debate, strategize, organize. 
+                            Turn silent upvotes into active conversations.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 2</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Gamification</h3>
+                        <p>
+                            Achievement badges, leaderboards, streaks. Reward consistent activism. 
+                            "Viral" status for protests that explode. Make impact visible and rewarding.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 2</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Personalized Feed</h3>
+                        <p>
+                            "For You" algorithm based on your voting history. Related protests suggestions. 
+                            Hashtag system. Discover causes that match your energy.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 2</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎬</div>
+                        <h3>Video & GIF Support</h3>
+                        <p>
+                            TikTok-style short protest videos. Animated GIFs. Meme remixes. 
+                            Expand beyond static images to full multimedia protests.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 2</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🗺️</div>
+                        <h3>Geographic Map View</h3>
+                        <p>
+                            Interactive map showing protests by location. See what's happening near you. 
+                            Connect local movements. Visualize global activism.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 3: MOVEMENT -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number" style="border-color: var(--hot-pink); color: var(--hot-pink); box-shadow: 0 0 30px rgba(255, 23, 68, 0.5);">03</div>
+                    <h2 class="phase-title" style="color: var(--hot-pink); text-shadow: 0 0 20px rgba(255, 23, 68, 0.3);">Movement: Real-World Impact</h2>
+                    <p class="phase-description">
+                        Bridge the digital to the physical. Turn online protests into real-world change.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>Event Coordination</h3>
+                        <p>
+                            Schedule IRL protests with date, time, and location. RSVP system with reminders. 
+                            Safety features and legal observer contacts. Organize real action.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 3</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Group Chat</h3>
+                        <p>
+                            Encrypted messaging for protest organizers and supporters. 
+                            Plan strategy, coordinate logistics, build solidarity.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 3</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Victory Tracking</h3>
+                        <p>
+                            Mark protests as "Won" when demands are met. Track progress updates. 
+                            Link media coverage. Showcase success stories. Prove this works.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 3</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Coalition Building</h3>
+                        <p>
+                            Merge similar protests. Co-organizer system for collaboration. 
+                            Cross-campus coordination. Build bigger, stronger movements together.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 3</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚖️</div>
+                        <h3>Legal & Safety Resources</h3>
+                        <p>
+                            Know Your Rights guides by location. Pro bono lawyer directory. 
+                            First aid for demonstrations. Protect protesters with knowledge.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 3</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Impact Analytics</h3>
+                        <p>
+                            Dashboard showing protest reach, growth, demographics. Movement trend analysis. 
+                            Geographic heatmaps. Data that proves impact.
+                        </p>
+                        <span class="priority-tag priority-medium">Phase 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 4: SCALE -->
+            <div class="phase">
+                <div class="phase-header">
+                    <div class="phase-number" style="border-color: var(--gold); color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);">04</div>
+                    <h2 class="phase-title" style="color: var(--gold); text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);">Scale: Global Movement</h2>
+                    <p class="phase-description">
+                        Take The Meme Protest worldwide. Multiple platforms. Multiple languages. Unstoppable reach.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Internationalization</h3>
+                        <p>
+                            Multi-language support (i18n). Cultural customization per region. 
+                            Global protests, not just campus-focused. Activism has no borders.
+                        </p>
+                        <span class="priority-tag priority-future">Future</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📲</div>
+                        <h3>Native Mobile Apps</h3>
+                        <p>
+                            React Native apps for iOS and Android. Full native experience. 
+                            Better performance, deeper integration, app store presence.
+                        </p>
+                        <span class="priority-tag priority-future">Future</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔌</div>
+                        <h3>Platform Integration</h3>
+                        <p>
+                            Browser extensions. Discord/Slack bots. Public API for third-party tools. 
+                            Social media auto-posting. Embeddable widgets. Be everywhere.
+                        </p>
+                        <span class="priority-tag priority-future">Future</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI-Powered Tools</h3>
+                        <p>
+                            AI meme quality scoring. GPT slogan generator. Image recognition for auto-tagging. 
+                            Sentiment analysis. Translation. Smarter activism through AI.
+                        </p>
+                        <span class="priority-tag priority-future">Future</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">♿</div>
+                        <h3>Accessibility First</h3>
+                        <p>
+                            Screen reader optimization. Mandatory alt text. High contrast mode. 
+                            Keyboard navigation. Closed captions. Activism for everyone.
+                        </p>
+                        <span class="priority-tag priority-future">Future</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Advanced Moderation</h3>
+                        <p>
+                            AI content filtering. Community moderators. Verified organizer badges. 
+                            Report systems. Keep it safe without killing the spirit.
+                        </p>
+                        <span class="priority-tag priority-future">Future</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-box">
+            <h3>📣 Your Voice Shapes This Roadmap</h3>
+            <p>
+                This platform belongs to the community. What features matter most to you? 
+                What would make The Meme Protest more powerful?
+            </p>
+            <ul>
+                <li>Create a protest requesting features you want</li>
+                <li>Vote on what should be built first</li>
+                <li>Join our community discussions (coming soon)</li>
+                <li>Follow development on GitHub</li>
+            </ul>
+        </div>
+
+        <div class="cta-section">
+            <h2>THE REVOLUTION NEEDS YOU</h2>
+            <p>
+                We're building this in public. Open source. Community-driven. No corporate overlords. 
+                No VC investors. Just people who believe memes can change the world.
+            </p>
+            <p style="margin-top: 2rem; margin-bottom: 2rem;">
+                <strong style="color: var(--hot-pink);">Want to help build this?</strong> 
+                Developers, designers, organizers, and dreamers all welcome.
+            </p>
+            <a href="https://github.com/CommanderGeeks/memeprotest" class="btn btn-primary" target="_blank">
+                Contribute on GitHub
+            </a>
+            <a href="submit.html" class="btn btn-secondary">
+                Start a Protest
+            </a>
+        </div>
+
+        <div class="intro-section" style="margin-top: 4rem;">
+            <h2 style="color: var(--neon-green); font-size: 2.5rem; margin-bottom: 1rem;">
+                Staying True to the Mission
+            </h2>
+            <p style="color: var(--text-secondary);">
+                As we grow, we commit to these principles:
+            </p>
+            <p><strong style="color: var(--electric-blue);">✓ Always free</strong> — No paywalls, no premium tiers, no ads</p>
+            <p><strong style="color: var(--electric-blue);">✓ Always grassroots</strong> — Community-owned, not corporate-controlled</p>
+            <p><strong style="color: var(--electric-blue);">✓ Always open</strong> — Open source code, transparent development</p>
+            <p><strong style="color: var(--electric-blue);">✓ Always anarchist</strong> — No gatekeepers, no hierarchies, just voices</p>
+            <p style="margin-top: 2rem; color: var(--hot-pink); font-weight: 600; font-size: 1.2rem;">
+                The future is being written by those who show up. Let's build it together.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Meme Protest. A movement, not an organization. Started by students who believed memes could change the world.</p>
+        <p style="margin-top: 0.5rem; color: var(--neon-green);">Armed with memes. Powered by passion. Built for the future.</p>
+    </footer>
+
+    <script src="shared.js"></script>
+</body>
+</html>
